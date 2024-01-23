@@ -1,0 +1,52 @@
+fatal error: error in backend: Cannot select: 0x7fd2a68923e0: externref = Constant<0>
+In function: wgpuDeviceCreateRenderPipeline
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.      Program arguments: /Users/kainino/sources/emsdk/upstream/bin/clang++ -target wasm32-unknown-emscripten -fignore-exceptions -fvisibility=default -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-sjlj -mllvm
+-disable-lsr --sysroot=/Users/kainino/src/emscripten/cache/sysroot -Xclang -iwithsysroot/include/fakesdl -Xclang -iwithsysroot/include/compat -c -O2 -Wall -fno-unroll-loops -std=c++11 -mreference-types -g3 -Werror ../../../system/lib/w
+ebgpu/webgpu.cpp
+1.      <eof> parser at end of file
+2.      Code generation
+3.      Running pass 'Function Pass Manager' on module '../../../system/lib/webgpu/webgpu.cpp'.
+4.      Running pass 'WebAssembly Instruction Selection' on function '@wgpuDeviceCreateRenderPipeline'
+ #0 0x0000000105a40068 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101343068)
+ #1 0x0000000105a3da55 llvm::sys::RunSignalHandlers() (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101340a55)
+ #2 0x0000000105a3f440 llvm::sys::CleanupOnSignal(unsigned long) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101342440)
+ #3 0x000000010599b645 (anonymous namespace)::CrashRecoveryContextImpl::HandleCrash(int, unsigned long) (.llvm.6455846025837661684) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10129e645)
+ #4 0x000000010599b60e llvm::CrashRecoveryContext::HandleExit(int) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10129e60e)
+ #5 0x0000000105a3a274 llvm::sys::Process::Exit(int, bool) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10133d274)
+ #6 0x0000000104797207 LLVMErrorHandler(void*, char const*, bool) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10009a207)
+ #7 0x000000010599fd59 llvm::report_fatal_error(llvm::Twine const&, bool) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1012a2d59)
+ #8 0x0000000106d8d923 llvm::SelectionDAGISel::CannotYetSelect(llvm::SDNode*) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x102690923)
+ #9 0x0000000106d8c486 llvm::SelectionDAGISel::SelectCodeCommon(llvm::SDNode*, unsigned char const*, unsigned int) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10268f486)
+#10 0x000000010480a9cc (anonymous namespace)::WebAssemblyDAGToDAGISel::Select(llvm::SDNode*) (.llvm.12820590457502534944) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10010d9cc)
+#11 0x0000000106d82cef llvm::SelectionDAGISel::DoInstructionSelection() (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x102685cef)
+#12 0x0000000106d821db llvm::SelectionDAGISel::CodeGenAndEmitDAG() (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1026851db)
+#13 0x0000000106d81336 llvm::SelectionDAGISel::SelectAllBasicBlocks(llvm::Function const&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x102684336)
+#14 0x0000000106d7e0ee llvm::SelectionDAGISel::runOnMachineFunction(llvm::MachineFunction&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1026810ee)
+#15 0x0000000104fbd0f7 llvm::MachineFunctionPass::runOnFunction(llvm::Function&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1008c00f7)
+#16 0x0000000105523455 llvm::FPPassManager::runOnFunction(llvm::Function&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100e26455)
+#17 0x000000010552d0a4 llvm::FPPassManager::runOnModule(llvm::Module&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100e300a4)
+#18 0x00000001055240e2 llvm::legacy::PassManagerImpl::run(llvm::Module&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100e270e2)
+#19 0x00000001062e1445 clang::EmitBackendOutput(clang::DiagnosticsEngine&, clang::HeaderSearchOptions const&, clang::CodeGenOptions const&, clang::TargetOptions const&, clang::LangOptions const&, llvm::StringRef, llvm::Module*, clang::
+BackendAction, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>, std::__2::unique_ptr<llvm::raw_pwrite_stream, std::__2::default_delete<llvm::raw_pwrite_stream>>, clang::BackendConsumer*) (/Users/kainino/sources/emsdk/upstream/bin/clang
+-18+0x101be4445)
+#20 0x0000000106199017 clang::BackendConsumer::HandleTranslationUnit(clang::ASTContext&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101a9c017)
+#21 0x00000001076aae66 clang::ParseAST(clang::Sema&, bool, bool) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x102fade66)
+#22 0x00000001066f9935 clang::FrontendAction::Execute() (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101ffc935)
+#23 0x00000001066258f0 clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101f288f0)
+#24 0x00000001067f3dbf clang::ExecuteCompilerInvocation(clang::CompilerInstance*) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1020f6dbf)
+#25 0x0000000104795a33 cc1_main(llvm::ArrayRef<char const*>, char const*, void*) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100098a33)
+#26 0x0000000104793648 ExecuteCC1Tool(llvm::SmallVectorImpl<char const*>&, llvm::ToolContext const&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100096648)
+#27 0x000000010643090e void llvm::function_ref<void ()>::callback_fn<clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<
+char>>*, bool*) const::$_0>(long) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101d3390e)
+#28 0x000000010599b5ec llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x10129e5ec)
+#29 0x00000001064302c4 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::__2::optional<llvm::StringRef>>, std::__2::basic_string<char, std::__2::char_traits<char>, std::__2::allocator<char>>*, bool*) const (/Users/kainino/sources/
+emsdk/upstream/bin/clang-18+0x101d332c4)
+#30 0x00000001063e459a clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101ce759a)
+#31 0x00000001063e483f clang::driver::Compilation::ExecuteJobs(clang::driver::JobList const&, llvm::SmallVectorImpl<std::__2::pair<int, clang::driver::Command const*>>&, bool) const (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0
+x101ce783f)
+#32 0x000000010640d4c0 clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::__2::pair<int, clang::driver::Command const*>>&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x101d104c0)
+#33 0x0000000104792556 clang_main(int, char**, llvm::ToolContext const&) (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x100095556)
+#34 0x00000001047a3fb1 main (/Users/kainino/sources/emsdk/upstream/bin/clang-18+0x1000a6fb1)
+#35 0x000000020b36d386
